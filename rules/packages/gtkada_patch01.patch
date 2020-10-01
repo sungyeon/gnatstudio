@@ -1,0 +1,12 @@
+diff --git a/src/misc_osx.m b/src/misc_osx.m
+index c456486e..6273f41a 100644
+--- a/src/misc_osx.m
++++ b/src/misc_osx.m
+@@ -217,6 +217,7 @@ - (void)handleOpenDocument:(NSAppleEventDescriptor*)event
+ /****************************************
+  * _ada_gtk_osx_allow_fullscreen_mapped *
+  ****************************************/
++NSWindow *gdk_quartz_window_get_nswindow(GdkWindow *window);
+ 
+ /* Enable the full-screen mode for the mapped GtkWindow window
+  */
