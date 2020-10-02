@@ -21,6 +21,7 @@ INSTALL_DIR         := $(PREFIX)/$(HOST)
 LIB_DIR             := $(PREFIX)/$(HOST)_lib
 NATIVE_INSTALL_DIR  := $(PREFIX)/$(BUILD_HOST)
 NATIVE_LIB_DIR      := $(PREFIX)/$(BUILD_HOST)_lib
+PYTHONENV_DIR       := $(TOP_DIR)/env
 PATH                := $(GNAT_PREFIX_PATH)/bin:$(PATH)
 
 GPR_PROJECT_PATH    := $(SRC_DIR)/gnatcoll-bindings/iconv:$(SRC_DIR)/gnatcoll-bindings/gmp
@@ -75,6 +76,16 @@ build-setup:
 	@echo make uses $(JOBS) threads.
 	@mkdir -p $(TOP_DIR)/build
 
+build-pythonenv:
+	@echo make python3 virtual environment
+	python3 -m venv env
+	source env/bin/activate &&                                 \
+	$(TOP_DIR)/env/bin/python3 -m pip install --upgrade pip && \
+	pip install -r $(SRC_DIR)/langkit/REQUIREMENTS.dev &&      \
+	pip install -r $(SRC_DIR)/libadalang/REQUIREMENTS.dev 
+	cd env &&                                                  \
+	ln -s /usr/local/Cellar//python@3.8/3.8.5/Frameworks Frameworks
+
 build-pkg-%:
 	@echo " "
 	@echo [START $*]-----------------------------------------------------------
@@ -88,6 +99,9 @@ build-pkg-%:
 build-all:
 	@echo build all
 	@echo package lists: $(BUILD_LIST)
+	$(MAKE1) -f $(MAKEFILE) build-setup
+	$(MAKE1) -f $(MAKEFILE) get-pkgs
+	$(MAKE1) -f $(MAKEFILE) build-pythonenv 
 	for pkg in $(BUILD_LIST);do $(MAKE1) -f $(MAKEFILE) build-pkg-$$pkg; done
 
 clean:

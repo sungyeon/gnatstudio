@@ -66,3 +66,16 @@ index e4052670..39ec79bf 100644
              null;
        end case;
     end Builder;
+diff --git a/python3/setup.py b/python3/setup.py
+index 05839e0c..4944b47d 100755
+--- a/python3/setup.py
++++ b/python3/setup.py
+@@ -158,7 +158,7 @@ class GNATCollPython(SetupApp):
+         logging.info('%-26s %s', 'Version', version)
+ 
+         # Set build mode
+-        config.set_data('BUILD', 'DEBUG' if args.debug else 'PROD',
++        config.set_data('BUILD', 'Debug' if args.debug else 'Production',
+                         sub='gprbuild')
+         logging.info('%-26s %s', 'Build mode',
+                      config.data['gprbuild']['BUILD'])

@@ -9,5 +9,6 @@ $(PKG)_BRANCH    := $($(PKG)_VERSION)
 define $(PKG)_BUILD_$(HOST)
     @echo Building $(1) package for $(HOST)
     cd $(SRC_DIR)/$($(1)_SUBDIR) && \
-    $(MAKE1)
+    $(MAKE1) all &&                 \
+    $(MAKE1) install-strip DESTDIR=$(GNAT_PREFIX_PATH)
 endef

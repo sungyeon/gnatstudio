@@ -2,13 +2,15 @@
 
 # package list
 PKGS        := gtkada gmp xz
-PKGS        += gnatcoll-bindings gnatcoll-db
-PKGS        += langkit libadalang
+PKGS        += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
+PKGS        += langkit libadalang libadalang-tools
+PKGS        += ada_language_server
 PKGS        += gps
 
 # library and utility build lists, gcc
 BUILD_LIST  := gtkada gmp xz
-BUILD_LIST  += gnatcoll-bindings gnatcoll-db
+BUILD_LIST  += gnatcoll-bindings gnatcoll-db VSS
+BUILD_LIST  += langkit libadalang libadalang-tools ada_language_server gps
 
 HOST        ?= $(shell uname -s)
 TARGET      ?= native
