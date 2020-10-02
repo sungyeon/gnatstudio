@@ -1,0 +1,68 @@
+diff --git a/python3/gnatcoll-scripts-python.ads b/python3/gnatcoll-scripts-python.ads
+index db0124fe..646d63bd 100644
+--- a/python3/gnatcoll-scripts-python.ads
++++ b/python3/gnatcoll-scripts-python.ads
+@@ -21,8 +21,6 @@
+ --                                                                          --
+ ------------------------------------------------------------------------------
+ 
+-pragma Ada_05;
+-
+ with Ada.Strings.Unbounded;
+ with GNATCOLL.Python;  use GNATCOLL.Python;
+ with System;
+diff --git a/python3/gnatcoll_python.gpr b/python3/gnatcoll_python.gpr
+index e4052670..39ec79bf 100644
+--- a/python3/gnatcoll_python.gpr
++++ b/python3/gnatcoll_python.gpr
+@@ -28,9 +28,9 @@ project GnatColl_Python is
+    Version := External ("GNATCOLL_VERSION", "0.0");
+    Name    := "gnatcoll_python3";
+ 
+-   type Build_Type is ("DEBUG", "PROD");
++   type Build_Type is ("Debug", "Production");
+    Build : Build_Type :=
+-       External ("GNATCOLL_BUILD_MODE", External ("BUILD", "PROD"));
++       External ("GNATCOLL_BUILD_MODE", External ("BUILD", "Production"));
+ 
+    type Library_Type_Type is ("relocatable", "static", "static-pic");
+    Library_Type : Library_Type_Type := External ("LIBRARY_TYPE", "static");
+@@ -65,13 +65,13 @@ project GnatColl_Python is
+ 
+    package Compiler is
+       case Build is
+-         when "DEBUG" =>
++         when "Debug" =>
+             for Switches ("Ada") use
+               ("-g", "-O0", "-gnata", "-gnatVa", "-gnatQ", "-gnaty", "-gnateE",
+                "-gnatwaCJe", "-fstack-check");
+             for Switches ("C") use ("-g", "-Wunreachable-code") & Split(Python_CFLAGS, " ");
+ 
+-         when "PROD" =>
++         when "Production" =>
+             --  Do not use -gnatwe for production mode
+             for Switches ("Ada") use ("-O2", "-gnatn", "-gnatwaCJ");
+             for Switches ("C") use ("-O2", "-Wunreachable-code") & Split(Python_CFLAGS, " ");
+@@ -80,18 +80,18 @@ project GnatColl_Python is
+ 
+    package Binder is
+       case Build is
+-         when "DEBUG" =>
++         when "Debug" =>
+             for Switches ("Ada") use ("-E");
+-         when "PROD" =>
++         when "Production" =>
+             null;
+       end case;
+    end Binder;
+ 
+    package Builder is
+       case Build is
+-         when "DEBUG" =>
++         when "Debug" =>
+             for Global_Configuration_Pragmas use "../gnat_debug.adc";
+-         when "PROD" =>
++         when "Production" =>
+             null;
+       end case;
+    end Builder;
