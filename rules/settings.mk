@@ -3,8 +3,7 @@
 # package list
 PKGS        := gtkada gmp xz
 PKGS        += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
-PKGS        += langkit libadalang libadalang-tools
-PKGS        += ada_language_server
+PKGS        += langkit libadalang libadalang-tools ada_language_server
 PKGS        += gps
 
 # library and utility build lists, gcc
