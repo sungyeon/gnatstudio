@@ -1,4 +1,4 @@
-# Makefile - makefile for T tools
+# Makefile - makefile for tools
 
 # get current locations
 MAKEFILE            := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
@@ -12,15 +12,10 @@ sinclude $(PWD)/.config.mk
 include $(TOP_DIR)/rules/settings.mk
 
 # setup build locations
-PREFIX              := $(PWD)/usr
 BUILD_DIR           := $(PWD)/build
 SRC_DIR             := $(PWD)/sources
 RULES_DIR           := $(PWD)/rules
 PKG_DIR             := $(RULES_DIR)/packages
-INSTALL_DIR         := $(PREFIX)/$(HOST)
-LIB_DIR             := $(PREFIX)/$(HOST)_lib
-NATIVE_INSTALL_DIR  := $(PREFIX)/$(BUILD_HOST)
-NATIVE_LIB_DIR      := $(PREFIX)/$(BUILD_HOST)_lib
 PYTHONENV_DIR       := $(TOP_DIR)/env
 PATH                := $(GNAT_PREFIX_PATH)/bin:$(PATH)
 
@@ -82,9 +77,9 @@ build-pythonenv:
 	source env/bin/activate &&                                 \
 	$(TOP_DIR)/env/bin/python3 -m pip install --upgrade pip && \
 	pip install -r $(SRC_DIR)/langkit/REQUIREMENTS.dev &&      \
-	pip install -r $(SRC_DIR)/libadalang/REQUIREMENTS.dev 
+	pip install -r $(SRC_DIR)/libadalang/REQUIREMENTS.dev
 	cd env &&                                                  \
-	ln -s /usr/local/Cellar//python@3.8/3.8.5/Frameworks Frameworks
+	ln -s /usr/local/opt/python3/Frameworks Frameworks
 
 build-pkg-%:
 	@echo " "
@@ -101,7 +96,7 @@ build-all:
 	@echo package lists: $(BUILD_LIST)
 	$(MAKE1) -f $(MAKEFILE) build-setup
 	$(MAKE1) -f $(MAKEFILE) get-pkgs
-	$(MAKE1) -f $(MAKEFILE) build-pythonenv 
+	$(MAKE1) -f $(MAKEFILE) build-pythonenv
 	for pkg in $(BUILD_LIST);do $(MAKE1) -f $(MAKEFILE) build-pkg-$$pkg; done
 
 clean:
@@ -111,15 +106,13 @@ clean:
 
 clobber: clean
 	rm -rf $(SRC_DIR)
-	rm -rf $(PREFIX)/*
-	rm -rf $(PREFIX)
-
-print_env:
-	@echo INSTALL_DIR=$(INSTALL_DIR)
-	@echo PATH=$(PATH)
+	rm -rf $(BUILD_DIR)
+	rm -rf $(PYTHONENV_DIR)
 
 help:
-	@echo "Help!!"
+	@echo "make build-all - rebuild all packages"
+	@echo "make get-pkgs  - get package source from the github"
+	@echo "make clobber   - delete all sources"
 
 include $(patsubst %,$(PKG_DIR)/%.mk,$(PKGS))
 
