@@ -1,0 +1,20 @@
+diff --git a/common/core/src/os-utils.c b/common/core/src/os-utils.c
+index d6435e9fa7..07bf1b2b30 100644
+--- a/common/core/src/os-utils.c
++++ b/common/core/src/os-utils.c
+@@ -29,9 +29,14 @@
+ #else
+ #include <pwd.h>
+ #endif
++#ifdef __APPLE__
++#include <sys/stat.h>
++#include <unistd.h>
++extern int __gnat_stat(char *name, struct stat *statbuf);
++#endif
+ 
+ int
+-__gps_subdirectories_count (name)
++__gps_subdirectories_count (char *name)
+ {
+   struct stat statbuf;
+   int ret;
