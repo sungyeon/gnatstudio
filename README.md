@@ -4,3 +4,7 @@
     * brew install python3
     * brew install gtk+3
     * brew install pygobject3
+    * brew install autoconf
+    * brew install automake
+    * brew install autogen
+    *
