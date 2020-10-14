@@ -8,7 +8,7 @@ PKGS        += gps
 
 # library and utility build lists, gcc
 BUILD_LIST  := gtkada gmp xz
-BUILD_LIST  += gnatcoll-bindings gnatcoll-db VSS
+BUILD_LIST  += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
 BUILD_LIST  += langkit libadalang libadalang-tools ada_language_server gps
 
 HOST        ?= $(shell uname -s)
