@@ -1,0 +1,81 @@
+diff --git a/python/gnatcoll-scripts-python.ads b/python/gnatcoll-scripts-python.ads
+index 5f763b3c..c45d942a 100644
+--- a/python/gnatcoll-scripts-python.ads
++++ b/python/gnatcoll-scripts-python.ads
+@@ -21,7 +21,7 @@
+ --                                                                          --
+ ------------------------------------------------------------------------------
+ 
+-pragma Ada_05;
++
+ 
+ with Ada.Strings.Unbounded;
+ with GNATCOLL.Python;  use GNATCOLL.Python;
+diff --git a/python/gnatcoll_python.gpr b/python/gnatcoll_python.gpr
+index 3e6de212..dd01a3bb 100644
+--- a/python/gnatcoll_python.gpr
++++ b/python/gnatcoll_python.gpr
+@@ -28,9 +28,9 @@ project GnatColl_Python is
+    Version := External ("GNATCOLL_VERSION", "0.0");
+    Name    := "gnatcoll_python";
+ 
+-   type Build_Type is ("DEBUG", "PROD");
++   type Build_Type is ("Debug", "Production");
+    Build : Build_Type :=
+-       External ("GNATCOLL_BUILD_MODE", External ("BUILD", "PROD"));
++       External ("GNATCOLL_BUILD_MODE", External ("BUILD", "Production"));
+ 
+    type Library_Type_Type is ("relocatable", "static", "static-pic");
+    Library_Type : Library_Type_Type := External ("LIBRARY_TYPE", "static");
+@@ -65,13 +65,13 @@ project GnatColl_Python is
+ 
+    package Compiler is
+       case Build is
+-         when "DEBUG" =>
++         when "Debug" =>
+             for Switches ("Ada") use
+               ("-g", "-O0", "-gnata", "-gnatVa", "-gnatQ", "-gnaty", "-gnateE",
+                "-gnatwaCJe", "-fstack-check");
+             for Switches ("C") use ("-g", "-Wunreachable-code") & Split(Python_CFLAGS, " ");
+ 
+-         when "PROD" =>
++         when "Production" =>
+             --  Do not use -gnatwe for production mode
+             for Switches ("Ada") use ("-O2", "-gnatn", "-gnatwaCJ");
+             for Switches ("C") use ("-O2", "-Wunreachable-code") & Split(Python_CFLAGS, " ");
+@@ -80,18 +80,18 @@ project GnatColl_Python is
+ 
+    package Binder is
+       case Build is
+-         when "DEBUG" =>
++         when "Debug" =>
+             for Switches ("Ada") use ("-E");
+-         when "PROD" =>
++         when "Production" =>
+             null;
+       end case;
+    end Binder;
+ 
+    package Builder is
+       case Build is
+-         when "DEBUG" =>
++         when "Debug" =>
+             for Global_Configuration_Pragmas use "../gnat_debug.adc";
+-         when "PROD" =>
++         when "Production" =>
+             null;
+       end case;
+    end Builder;
+diff --git a/python/setup.py b/python/setup.py
+index 05839e0c..4944b47d 100755
+--- a/python/setup.py
++++ b/python/setup.py
+@@ -158,7 +158,7 @@ class GNATCollPython(SetupApp):
+         logging.info('%-26s %s', 'Version', version)
+ 
+         # Set build mode
+-        config.set_data('BUILD', 'DEBUG' if args.debug else 'PROD',
++        config.set_data('BUILD', 'Debug' if args.debug else 'Production',
+                         sub='gprbuild')
+         logging.info('%-26s %s', 'Build mode',
+                      config.data['gprbuild']['BUILD'])
