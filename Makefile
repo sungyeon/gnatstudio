@@ -6,7 +6,7 @@ TOP_DIR             := $(patsubst %/,%,$(dir $(MAKEFILE)))
 PWD                 := $(shell pwd)
 
 # include user configuration file
-sinclude $(PWD)/.config.mk
+sinclude $(PWD)/config.mk
 
 # includes configuration file
 include $(TOP_DIR)/rules/settings.mk
@@ -17,7 +17,7 @@ SRC_DIR             := $(PWD)/sources
 RULES_DIR           := $(PWD)/rules
 PKG_DIR             := $(RULES_DIR)/packages
 PYTHONENV_DIR       := $(TOP_DIR)/env
-PATH                := $(GNAT_PREFIX_PATH)/bin:$(PATH)
+#PATH                := $(GNAT_PREFIX_PATH)/bin:$(PATH)
 
 GPR_PROJECT_PATH    := $(SRC_DIR)/gnatcoll-bindings/iconv:$(SRC_DIR)/gnatcoll-bindings/gmp
 GPR_PROJECT_PATH    += $(SRC_DIR)/VSS/gnat:$(SRC_DIR)/libadalang-tools/src

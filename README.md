@@ -7,4 +7,4 @@
     * brew install autoconf
     * brew install automake
     * brew install autogen
-    *
+    * brew install gnu-sed

@@ -1,7 +1,7 @@
 # gnatcoll-bindings.mk - makefile for gnatcoll-bindings
 
 PKG              := gnatcoll-bindings
-$(PKG)_VERSION   := 21.0
+$(PKG)_VERSION   := master
 $(PKG)_SUBDIR    := $(PKG)
 $(PKG)_URL       := $(GITHUB_ADACORE_URL)/gnatcoll-bindings.git
 $(PKG)_BRANCH    := $($(PKG)_VERSION)
