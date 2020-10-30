@@ -8,3 +8,5 @@
     * brew install automake
     * brew install autogen
     * brew install gnu-sed
+    * brew install ninja
+    * brew install meson

@@ -8,6 +8,8 @@ $(PKG)_BRANCH    := $($(PKG)_VERSION)
 
 define $(PKG)_BUILD_$(HOST)
     @echo Building $(1) package for $(HOST) host
-    cd $(SRC_DIR)/$($(1)_SUBDIR)/ &&               \
-    ./configure --prefix=$(GNAT_PREFIX_PATH)
+    cd $(SRC_DIR)/$($(1)_SUBDIR)/ &&                                        \
+    meson -Dman=false  -Ddtrace=false --prefix=$(GPS_INSTALL_DIR) _build && \
+    ninja -C _build &&         \
+    ninja -C _build install
 endef

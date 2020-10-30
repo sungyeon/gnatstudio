@@ -1,19 +1,18 @@
 # settings.mk - configuration file for GPS tools.
 
 # package list
-PKGS        := zlib xz readline gmp gettext
-#gettext libffi glib
-#PKGS        += gtkada
-#PKGS        += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
-#PKGS        += langkit libadalang libadalang-tools ada_language_server
-#PKGS        += gps
+PKGS        := zlib xz readline gmp gettext libffi glib
+PKGS        += gtkada
+PKGS        += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
+PKGS        += langkit libadalang libadalang-tools ada_language_server
+PKGS        += gps
 
 # library and utility build lists, gcc
 
-BUILD_LIST  := zlib xz readline gmp
-#BUILD_LIST  := gtkada gmp xz
-#BUILD_LIST  += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
-#BUILD_LIST  += langkit libadalang libadalang-tools ada_language_server gps
+BUILD_LIST  := zlib xz readline gmp gettext libffi glib
+BUILD_LIST  := gtkada
+BUILD_LIST  += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
+BUILD_LIST  += langkit libadalang libadalang-tools ada_language_server gps
 
 HOST        ?= $(shell uname -s)
 TARGET      ?= native
