@@ -11,7 +11,7 @@ define $(PKG)_BUILD_$(HOST)
     LC_CTYPE=C &&                           \
     cd $(SRC_DIR)/$($(1)_SUBDIR)/ &&        \
     ./autogen.sh --skip-gnulib &&           \
-    ./configure --prefix=$(GPS_INSTALL_DIR) \
+    ./configure --prefix=$(GNAT_PREFIX_PATH) \
     --disable-dependency-tracking   \
     --disable-silent-rules          \
     --disable-debug                 \

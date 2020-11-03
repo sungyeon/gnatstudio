@@ -10,6 +10,6 @@ define $(PKG)_BUILD_$(HOST)
     @echo Building $(1) package for $(HOST) host
     cd $(SRC_DIR)/$($(1)_SUBDIR)/ &&            \
     ./autogen.sh &&                             \
-    ./configure --prefix=$(GPS_INSTALL_DIR) && \
+    ./configure --prefix=$(GNAT_PREFIX_PATH) && \
     $(MAKE) install
 endef
