@@ -11,9 +11,10 @@ PKGS        += langkit libadalang libadalang-tools ada_language_server
 PKGS        += gps
 
 # library and utility build lists, gcc
-BUILD_LIST  += readline gettext libffi glib
-BUILD_LIST  := zlib xz gmp
-BUILD_LIST  := gtkada
+#UILD_LIST  += readline gettext libffi glib
+
+BUILD_LIST  += zlib xz gmp
+BUILD_LIST  += gtkada
 BUILD_LIST  += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
 BUILD_LIST  += langkit libadalang libadalang-tools ada_language_server gps
 
