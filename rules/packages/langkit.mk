@@ -11,5 +11,8 @@ define $(PKG)_BUILD_$(HOST)
     source $(PYTHONENV_DIR)/bin/activate && \
     cd $(SRC_DIR)/$(1) &&                   \
     export PYTHONPATH=$(SRC_DIR)/$(1) &&    \
-    ./manage.py make
+    pip install . && \
+    python3 manage.py make && \
+    python3 manage.py build-langkit-support --library-types=static,static-pic,relocatable && \
+    python3 manage.py install-langkit-support --library-types=static,static-pic,relocatable $(GNAT_PREFIX_PATH)
 endef

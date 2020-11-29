@@ -3,16 +3,14 @@
 # package lists
 
 # gtk+ related
-# PKGS        += readline gettext libffi glib
-
+#PKGS        += readline gettext libffi glib
 PKGS        += zlib xz gmp gtkada
 PKGS        += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
 PKGS        += langkit libadalang libadalang-tools ada_language_server
 PKGS        += gps
 
 # library and utility build lists, gcc
-#UILD_LIST  += readline gettext libffi glib
-
+#BUILD_LIST  += readline gettext libffi glib
 BUILD_LIST  += zlib xz gmp
 BUILD_LIST  += gtkada
 BUILD_LIST  += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS

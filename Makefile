@@ -91,11 +91,18 @@ build-pkg-%:
 	@echo [END $*]-------------------------------------------------------------
 	@echo " "
 
-build-all:
+rebuild-all:
 	@echo build all
 	@echo package lists: $(BUILD_LIST)
 	$(MAKE1) -f $(MAKEFILE) build-setup
 	$(MAKE1) -f $(MAKEFILE) get-pkgs
+	$(MAKE1) -f $(MAKEFILE) build-pythonenv
+	for pkg in $(BUILD_LIST);do $(MAKE1) -f $(MAKEFILE) build-pkg-$$pkg; done
+
+build-all:
+	@echo build all
+	@echo package lists: $(BUILD_LIST)
+	$(MAKE1) -f $(MAKEFILE) build-setup
 	$(MAKE1) -f $(MAKEFILE) build-pythonenv
 	for pkg in $(BUILD_LIST);do $(MAKE1) -f $(MAKEFILE) build-pkg-$$pkg; done
 
