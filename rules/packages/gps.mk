@@ -14,10 +14,10 @@ define $(PKG)_BUILD_$(HOST)
     @echo Building $(1) package for $(HOST) path=$(PYTHON_INC_PATH)
     export GNATCOLL_PYTHON_LIBS="-L$(PYTHON_LIB_PATH) -lpython3.9 -ldl -framework CoreFoundation" && \
     export C_INCLUDE_PATH=$(PYTHON_H_PATH) &&            \
-    export GPR_PROJECT_PATH=$(SRC_DIR)/gnatcoll-bindings/python3:$(SRC_DIR)/libadalang-tools/src:$(SRC_DIR)/ada_language_server/gnat:$(SRC_DIR)/VSS/gnat && \
+    export GPR_PROJECT_PATH=$(SRC_DIR)/gnatcoll-bindings/python3:$(SRC_DIR)/libadalang-tools/src:$(SRC_DIR)/ada_language_server/gnat:$(SRC_DIR)/VSS/gnat:$(SRC_DIR)/spawn/gnat && \
     source $(PYTHONENV_DIR)/bin/activate &&              \
     cd $(SRC_DIR)/$($(1)_SUBDIR) &&                      \
-    ./configure --prefix=$(GNAT_PREFIX_PATH) --with-clang=$(LIBCLANG_PATH) --with-python-exec=python3 && \
+    ./configure --prefix=$(GNAT_PREFIX_PATH) --with-clang=$(LIBCLANG_PATH) && \
     $(MAKE) &&                                           \
     $(MAKE1) install
 endef

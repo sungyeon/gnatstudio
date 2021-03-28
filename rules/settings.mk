@@ -5,7 +5,7 @@
 # gtk+ related
 #PKGS        += readline gettext libffi glib
 PKGS        += zlib xz gmp gtkada
-PKGS        += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
+PKGS        += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS spawn
 PKGS        += langkit libadalang libadalang-tools ada_language_server
 PKGS        += gps
 
@@ -13,7 +13,7 @@ PKGS        += gps
 #BUILD_LIST  += readline gettext libffi glib
 BUILD_LIST  += zlib xz gmp
 BUILD_LIST  += gtkada
-BUILD_LIST  += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS
+BUILD_LIST  += gnatcoll-core gnatcoll-bindings gnatcoll-db VSS spawn
 BUILD_LIST  += langkit libadalang libadalang-tools ada_language_server gps
 
 HOST        ?= $(shell uname -s)

@@ -17,6 +17,6 @@ define $(PKG)_BUILD_$(HOST)
     cd $(SRC_DIR)/$($(1)_SUBDIR) &&                         \
     for pkg in $($(1)_BINDING_LIST); do cd $(SRC_DIR)/$($(1)_SUBDIR)/$$pkg && ./setup.py build; done && \
     for pkg in $($(1)_BINDING_LIST); do cd $(SRC_DIR)/$($(1)_SUBDIR)/$$pkg && ./setup.py install; done
-    cd $(SRC_DIR)/$($(1)_SUBDIR)/python3 && ./setup.py build --python3-exec=python3 && \
+    cd $(SRC_DIR)/$($(1)_SUBDIR)/python3 && ./setup.py build --python-exec=python3 && \
     ./setup.py install
 endef
